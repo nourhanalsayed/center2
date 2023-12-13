@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+ <body style="background-color: rgb(109, 104, 104);">
+<div class="container"  >
+<?php
+$id=$_GET["id"];
+include_once("connection/connect.php");
+$select_query = "SELECT * FROM languages where id=".$id; 
+$result = mysqli_query($connexion, $select_query);
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+?>
+    <div class="row">
+        <form method="post" action="./index.php?page=updatelanguages">
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
+            <div class="col-md-6">
+                <label  >name:</label>
+                <input type="text" class="form-control" name="name" value="<?php echo $row['name']; ?>">
+            </div>
+            <div class="col-md-6">
+                <label  >price:</label>
+                <input type="number" class="form-control" name="price" value="<?php echo $row['price']; ?>">
+            </div>
+            <div class="col-md-6"> 
+                <label  >nbrofhour:</label>
+                <input type="number" class="form-control" name="nbrofhour" value="<?php echo $row['nbrofhour']; ?>">
+            </div>
+            <div class="col-md-6">
+                <input type="submit" value="save" name="submit" class="btn btn-primary">     
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+
+
+
+</html>
+
+
+
